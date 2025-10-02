@@ -7,7 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar todas las dependencias
-RUN npm install --include=dev
+RUN npm install
+RUN npm install -g nodemon
 
 # Copiar el resto de la aplicación
 COPY . .
