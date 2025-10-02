@@ -9,6 +9,7 @@ COPY package*.json ./
 # Instalar todas las dependencias
 RUN npm install
 RUN npm install -g nodemon
+RUN npm install -g node-pg-migrate
 
 # Copiar el resto de la aplicación
 COPY . .
