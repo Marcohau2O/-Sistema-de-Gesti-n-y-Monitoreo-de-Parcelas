@@ -16,7 +16,7 @@ exports.up = (pgm) => {
     created_at: { type: 'timestamp', default: pgm.func('current_timestamp') },
   });
 
-  const hashedPassword = '$2b$10$7kU1uEoac1fhTz6H1ZZmOONnJuxMQgS6aJxZHeqH15X7OSMPOj8hS'; //admin123
+  const hashedPassword = '$2b$10$7kU1uEoac1fhTz6H1ZZmOONnJuxMQgS6aJxZHeqH15X7OSMPOj8hS'; // hash de "admin123"
 
   pgm.sql(`
     INSERT INTO users (name, email, password, role)

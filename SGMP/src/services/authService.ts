@@ -27,6 +27,7 @@ const handleError = async (error: any, context: string) => {
 export const LoginService = async (email: string, password: string) => {
   try {
     const result = await genericRequest(`${base_url}/api/login`, 'POST',  {email, password})
+    console.log("🔑 Enviando credenciales:", { email, password })
     return result
   } catch (error) {
     await handleError(error, 'LoginService')
