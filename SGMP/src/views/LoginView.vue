@@ -89,6 +89,7 @@ import { useLoadingStore } from '@/stores/loadingStore'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import Loanding from '@/components/common/Loanding.vue'
+import Swal from 'sweetalert2'
 
 const loadingStore = useLoadingStore()
 const router = useRouter()
@@ -105,10 +106,23 @@ const onSubmit = async () => {
 
     await authStore.login(email.value, password.value)
 
+    Swal.fire({
+      icon: 'success',
+      title: '¡Bienvenido!',
+      text: 'Has iniciado sesión correctamente',
+      timer: 1500,
+      showConfirmButton: false,
+    })
+
+    setTimeout(() => {
     router.push('/dashboard')
-  } catch (error) {
-    console.error(error)
-    alert('Credenciales incorrectas o error de servidor')
+    }, 1500)
+  } catch (error: any) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: error.message || 'Credenciales incorrectas o error de servidor',
+    })
   } finally {
     isLoading.value = false
     loadingStore.stopLoading()

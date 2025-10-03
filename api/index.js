@@ -4,9 +4,13 @@ const express = require('express')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+//Controlles
+
+const userRoutes = require('./routes/userRoutes');
 
 const app = express()
 const pool = require('./db');
+const port = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',') || []
@@ -21,13 +25,20 @@ const swaggerOptions = {
       version: '1.0.0',
       description: 'API de SGMP',
     },
+    servers: [
+      {
+        url: "http://localhost:4000",
+        url: "http://localhost:3169"
+      },
+    ],
   },
-  apis: ['./index.js'],
+  apis: ['./index.js', './routes/*.js'],
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use(express.json())
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -39,7 +50,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
-app.use(express.json())
+
+
+app.use('/api', userRoutes);
 
 
 const auth = (req, res, next) => {
@@ -205,6 +218,6 @@ app.post('/api/logout', auth, async (req, res) => {
 
 
 // 🚀 Iniciar servidor
-app.listen(4000, () => {
-  console.log('API escuchando en http://localhost:4000')
+app.listen(port, () => {
+  console.log(`API corriendo en http://localhost:${port}`)
 })

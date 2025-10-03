@@ -103,6 +103,7 @@ import { ref } from 'vue'
 import { useLoadingStore } from '@/stores/loadingStore'
 import Loanding from '@/components/common/Loanding.vue'
 import { useRouter } from 'vue-router'
+import Swal from 'sweetalert2'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -116,7 +117,11 @@ const confirmPassword = ref('')
 
 const onSubmit = async () => {
   if (password.value !== confirmPassword.value) {
-    alert('Las contraseñas no coinciden')
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Las contraseñas no coinciden',
+    })
     return
   }
 
@@ -127,10 +132,21 @@ const onSubmit = async () => {
       name.value, email.value, password.value,
     )
 
+    Swal.fire({
+      icon: 'success',
+      title: '¡Registro exitoso!',
+      text: 'Tu cuenta ha sido creada correctamente',
+      timer: 2000,
+      showConfirmButton: false,
+    })
+
     router.push('/')
-  } catch (error) {
-    console.error(error)
-    alert(error)
+  } catch (error: any) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: error.message || 'Ocurrió un error al registrar',
+    })
   } finally {
     isLoading.value = false
   }

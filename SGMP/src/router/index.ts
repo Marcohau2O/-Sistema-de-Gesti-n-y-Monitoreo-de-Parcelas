@@ -39,6 +39,18 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/crudParcelas',
+      name: 'crudParcelas',
+      component: () => import('../views/ParcelaCrudView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/usersCrud',
+      name: 'usersCrud',
+      component: () => import('../views/UserCrudView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/:pathMatch(.*)',
       name: 'Not found',
       component: () => import('../views/NotFound.vue'),

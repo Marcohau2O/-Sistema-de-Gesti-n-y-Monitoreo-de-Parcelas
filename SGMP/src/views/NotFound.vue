@@ -41,7 +41,7 @@ import BaseButton from '@/components/common/BaseButton.vue'
       </p>
 
       <!-- Botón -->
-      <BaseButton variant="blue" @click="$router.push('/')">
+      <BaseButton variant="blue" @click="$router.push('/dashboard')">
         Regresar al inicio
       </BaseButton>
     </div>

@@ -76,7 +76,7 @@
           🛠️ CRUD Parcelas
         </a>
         <a
-          href="/usuarios"
+          href="/usersCrud"
           class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
         >
           👤 Usuarios
@@ -185,22 +185,23 @@ const userMenuOpen = ref(false);
 const authStore = useAuthStore()
 
 const userData = getUserFromToken();
-console.log("datos usuarios", userData)
+// console.log("datos usuarios", userData)
 
 const toggleUserMenu = () => {
   userMenuOpen.value = !userMenuOpen.value;
 };
 
 // Usuario de prueba
-const user = ref({
-  name: "Marco",
-  email: "marco@parcelas.com",
-  role: "admin",
-});
+// const user = ref({
+//   name: "Marco",
+//   email: "marco@parcelas.com",
+//   role: "admin",
+// });
 
 // Inicial del usuario
 const userInitial = computed(() =>
-  user.value.name ? user.value.name.charAt(0).toUpperCase() : "U"
+  userData?.name ? userData.name.charAt(0).toUpperCase() : "U"
+  // user.value.name ? user.value.name.charAt(0).toUpperCase() : "U"
 );
 
 const logout = async () => {
