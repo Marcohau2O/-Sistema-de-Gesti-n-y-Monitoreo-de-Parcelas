@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/mapaParcelas',
       name: 'mapaParcelas',
-      component: () => import('../views/ParcelasView.vue'),
+      component: () => import('../views/MapaView.vue'),
       meta: { requiresAuth: true }
     },
     {
