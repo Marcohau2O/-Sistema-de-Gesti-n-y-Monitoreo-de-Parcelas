@@ -62,7 +62,7 @@
           🗺️ Mapa de parcelas
         </a>
         <a
-          href="parcelaEdit"
+          href="/parcelaEliminadas"
           class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
         >
           🗑️ Parcelas eliminadas

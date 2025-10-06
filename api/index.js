@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs')
 //Controlles
 
 const userRoutes = require('./routes/userRoutes');
+const useParcelas = require('./routes/parcelasRoutes.js');
 
 const app = express()
 const pool = require('./db');
@@ -47,11 +48,11 @@ app.use(cors({
       callback(new Error('Origen no permitido por CORS'))
     }
   },
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
-
+app.use('/api', useParcelas);
 app.use('/api', userRoutes);
 
 

@@ -33,8 +33,8 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/parcelaEdit',
-      name: 'parcelaEdit',
+      path: '/parcelaEliminadas',
+      name: 'parcelaEliminadas',
       component: () => import('../views/ParcelasView.vue'),
       meta: { requiresAuth: true }
     },
